@@ -84,9 +84,9 @@ set laststatus=2
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'https://github.com/vim-airline/vim-airline'
-Plug 'https://github.com/connorholyday/vim-snazzy'
-Plug 'https://github.com/scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'connorholyday/vim-snazzy'
+Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " HTML, CSS, JavaScript,JSON, etc.
@@ -97,6 +97,8 @@ Plug 'jelera/vim-javascript-syntax'
 
 "auto completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 "Python
 Plug 'tmhedberg/SimpylFold'  "折叠代码
@@ -150,10 +152,12 @@ let g:NERDTreeIndicatorMapCustom = {
             \ }
 
 
-
-
-
-
+"""
+"ultisnips
+"""
+let g:UltiSnipsExpandTrigger="<c-b>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-e>"
 
 
 
