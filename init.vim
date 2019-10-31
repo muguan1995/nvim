@@ -87,6 +87,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'https://github.com/vim-airline/vim-airline'
 Plug 'https://github.com/connorholyday/vim-snazzy'
 Plug 'https://github.com/scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " HTML, CSS, JavaScript,JSON, etc.
 Plug 'elzr/vim-json'
@@ -131,8 +132,22 @@ inoremap <silent><expr> <Tab>
                         \ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <c-space> coc#refresh()
+set signcolumn=yes
 
-
+"""
+"NERDTree-git
+"""
+let g:NERDTreeIndicatorMapCustom = {
+            \ "Modified": "✹",
+            \ "Staged": "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed" : "➜",
+            \ "Unmerged": "═",
+            \ "Deleted" : "✖",
+            \ "Dirty" : "✗",
+            \ "Clean" : "✔︎",
+            \ "Unknown" : "?"
+            \ }
 
 
 
