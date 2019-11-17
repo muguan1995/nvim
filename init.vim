@@ -88,6 +88,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mhinz/vim-startify'
 
 " HTML, CSS, JavaScript,JSON, etc.
 Plug 'elzr/vim-json'
