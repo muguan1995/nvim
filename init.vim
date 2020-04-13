@@ -39,6 +39,7 @@ let mapleader=" "
 " Save & quit
 noremap Q :q<CR>
 noremap W :w<CR>
+noremap <C-q> :q!<CR>
 noremap R :source $MYVIMRC<CR>
 
 "split move
@@ -96,9 +97,21 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
-Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mhinz/vim-startify'
+
+"Surround
+Plug 'tpope/vim-surround'
+
+"new terminal
+Plug 'voldikss/vim-floaterm'
+Plug 'itchyny/lightline.vim'
+
+"side navigation
+Plug 'scrooloose/nerdtree'
+
+"commenter
+Plug 'preservim/nerdcommenter'
 
 " HTML, CSS, JavaScript,JSON, etc.
 Plug 'elzr/vim-json'
@@ -116,6 +129,8 @@ Plug 'tmhedberg/SimpylFold'  "折叠代码
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] } "缩进
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins','for' :['python', 'vim-plug'] } "高亮
 
+" file navigation
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -171,4 +186,34 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-e>"
 
 
+"""
+"fzf
+"""
+let g:fzf_preview_window = 'right:60%'
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
+"""
+"vim-floaterm
+"""
+let g:floaterm_position='center'
+let g:floaterm_width=0.8
+let g:floaterm_height=0.6
+let g:floaterm_rootmarkers=['.project', '.git', '.hg', '.svn', '.root', '.gitignore']
+let g:floaterm_autoinsert=v:true
+hi FloatermNF guibg=black
+
+nmap <M-+> :FloatermNew<cr>
+nmap <M-=> :FloatermToggle<cr>
+tnoremap <M-+> <c-\><c-n>:FloatermNew<cr>
+tnoremap <M-=> <c-\><c-n>:FloatermToggle<cr>
+au FileType floaterm tnoremap <M-h> <c-\><c-n>:FloatermPrev<CR>
+au FIleType floaterm tnoremap <M-l> <c-\><c-n>:FloatermNext<CR>
+
+nmap <leader>f :FloatermNew ranger<cr>
+nmap <leader>g :FloatermNew lazygit<cr>
+
+"""
+"nerdcommenter
+"""
+let g:NERDSpaceDelims = 1
+let g:NERDToggleCheckAllLines = 1
