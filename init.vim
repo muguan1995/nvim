@@ -101,6 +101,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mhinz/vim-startify'
 
 "Surround
+Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-surround'
 
 "new terminal
@@ -146,9 +147,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "coc
 """
 "fix the most annoying bug that coc has
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+set updatetime=100
+set shortmess+=c
+
 let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-emmet', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-omnisharp']
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -158,14 +161,25 @@ inoremap <silent><expr> <Tab>
                         \ pumvisible() ? "\<C-n>" :
                         \ <SID>check_back_space() ? "\<Tab>" :
                         \ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" navigate diagnostics
+nmap <silent> <LEADER>+ <Plug>(coc-diagnostic-prev)
+nmap <silent> <LEADER>= <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 inoremap <silent><expr> <c-space> coc#refresh()
 set signcolumn=yes
 
 """
 "NERDTree-git
 """
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
             \ "Modified": "✹",
             \ "Staged": "✚",
             \ "Untracked" : "✭",
