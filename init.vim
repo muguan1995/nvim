@@ -18,10 +18,6 @@ endif
 " === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
 " ===
 let has_machine_specific_file = 1
-if empty(glob('~/.config/nvim/_machine_specific.vim'))
-	let has_machine_specific_file = 0
-	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-endif
 source ~/.config/nvim/_machine_specific.vim
 
 " ===
@@ -130,9 +126,6 @@ Plug 'tmhedberg/SimpylFold'  "折叠代码
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] } "缩进
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins','for' :['python', 'vim-plug'] } "高亮
 
-" file navigation
-Plug 'junegunn/fzf.vim'
-
 call plug#end()
 
 """
@@ -173,6 +166,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+autocmd CursorHold * silent call CocActionAsync('highlight')
+nmap <leader>rn <Plug>(coc-rename)
 inoremap <silent><expr> <c-space> coc#refresh()
 set signcolumn=yes
 
@@ -198,13 +193,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 let g:UltiSnipsExpandTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-e>"
-
-
-"""
-"fzf
-"""
-let g:fzf_preview_window = 'right:60%'
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
 """
 "vim-floaterm
